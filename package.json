@@ -1,0 +1,19 @@
+{
+  "name": "mj-differ",
+  "version": "1.0.0",
+  "description": "diffing mathjax output",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter Krautzberger",
+  "license": "ISC",
+  "dependencies": {
+    "mathjax-node": "^2.1.1",
+    "mathjax-node-sre": "^3.0.1",
+    "mathjax3": "^3.0.0-beta.3",
+    "mj3-demos-node": "github:mathjax/mj3-demos-node",
+    "pixelmatch": "^4.0.2",
+    "puppeteer": "^1.11.0"
+  }
+}
