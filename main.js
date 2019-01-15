@@ -1,6 +1,7 @@
 process.on('unhandledRejection', r => console.log(r));
 
-const fs = require('fs')
+const fs = require('fs');
+const crypto = require('crypto');
 
 // promise around mathjax-node-sre
 const mj2 = require('mathjax-node-sre');
@@ -69,11 +70,12 @@ const svg2png = async function(svgstring, outputFileName) {
     return result;
   };
 
-const main = async texstring => {
+const diff_v2_SRE = async (texstring, format) => {
   const mj2Input = Object.assign({}, mjInputDefault);
   mj2Input.math = texstring;
-  mj2Input.format = 'TeX';
+  mj2Input.format = format;
   const mj2out = await mjpromise(mj2Input);
+  if (mj2out.errors) return new Error('mathjax error')
   const res = await svg2png(mj2out.svg, 'mj2out.png');
 
   const mj2sreInput = Object.assign({}, mjInputDefault);
@@ -90,9 +92,21 @@ const main = async texstring => {
 
   var diff = new PNG({width: 1000, height: 1000});
   const match = pixelmatch(img1.data, img2.data, diff.data, img1.width, img1.height, {threshold: 0.1});
-  console.log(match)
-  diff.pack().pipe(fs.createWriteStream('diff.png'));
+  if (match === 0) return;
+  const texstringhash = crypto.createHash('md5').update(texstring).digest("hex");
+  diff.pack().pipe(fs.createWriteStream(texstringhash + '-v2-sre.png'));
 };
+
+
+const main = async (input) => {
+  const eqnStore = JSON.parse(fs.readFileSync(input).toString());
+  for (let key in eqnStore) {
+    if (key === 'globalsvg') continue;
+    const entry = eqnStore[key];
+    console.log(entry["tex"], entry["format"])
+    await diff_v2_SRE(entry["tex"].replace(/&amp;/g, '&').replace(/&gt;/g, '>').replace(/&lt;/g, '<'), entry["format"]);
+  }
+}
 
 // process CLI arguments
 const input = process.argv[2];
