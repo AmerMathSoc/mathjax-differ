@@ -2,6 +2,7 @@ process.on('unhandledRejection', r => console.log(r));
 
 const fs = require('fs');
 const crypto = require('crypto');
+const compareImages = require("resemblejs/compareImages");
 
 // promise around mathjax-node-sre
 const mj2 = require('mathjax-node-sre');
@@ -37,7 +38,7 @@ mj2.start();
 
 const mjInputDefault = {
   svg: true,
-  svgNode: true,
+  mml: true,
   useGlobalCache: false,
   width: 0,
   ex: 7.52, // ex height to match Times
@@ -63,14 +64,16 @@ const svg2png = async function(svgstring, outputFileName) {
     await page.setViewport({ width: 1000, height: 1000, deviceScaleFactor: 2 });
     await page.goto('data:text/html, %3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cmeta%20charset%3D%22utf-8%22%3E%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%22%3E%3Ctitle%3Etitle%3C%2Ftitle%3E%3C%2Fhead%3E%3Cbody%3E%3C%2Fbody%3E%3C%2Fhtml%3E');
     // using CSS transforms to get a higher resolution
-    await page.evaluate(s => (document.body.innerHTML = '<span style="height: 1000px; width:1000px; display:inline-flex; padding: 1px;">' + s + '</span>'), svgstring);
-    const svg = await page.$('span');
+    await page.evaluate(s => (document.body.innerHTML = '<span style="height: 1000px; width: 1000px; display:inline-flex; padding: 1px;">' + s + '</span>'), svgstring);
+    const svg = await page.$('svg');
     const result = await svg.screenshot();
     await browser.close();
     return result;
   };
 
 const diff_v2_SRE = async (texstring, format) => {
+  const texstringhash = crypto.createHash('md5').update(format+'%'+texstring).digest("hex");
+
   const mj2Input = Object.assign({}, mjInputDefault);
   mj2Input.math = texstring;
   mj2Input.format = format;
@@ -85,18 +88,14 @@ const diff_v2_SRE = async (texstring, format) => {
   const mj2sreout = await mjpromise(mj2sreInput);
   const resSRE = await svg2png(mj2sreout.svg, 'mj2sreout.png');
 
-  const  pixelmatch = require('pixelmatch');
-  const PNG = require('pngjs').PNG;
-  const img1 = new PNG(res)
-  const img2 = new PNG(resSRE)
-
-  var diff = new PNG({width: 1000, height: 1000});
-  const match = pixelmatch(img1.data, img2.data, diff.data, img1.width, img1.height, {threshold: 0.1});
-  if (match === 0) return;
-  const texstringhash = crypto.createHash('md5').update(texstring).digest("hex");
-  diff.pack().pipe(fs.createWriteStream(texstringhash + '-v2-sre.png'));
+  const data = await compareImages(res, resSRE,{});
+  console.log('Same dimension? ' + data.isSameDimensions);
+  console.log('Mismatch: ' + data.misMatchPercentage);
+  if (data.misMatchPercentage < 1) return;
+  fs.writeFileSync(texstringhash+'-v2.png', res);
+  fs.writeFileSync(texstringhash+'-v2sre.png', resSRE);
+  fs.writeFileSync(texstringhash+'v2-v2sre.png', data.getBuffer());
 };
-
 
 const main = async (input) => {
   const eqnStore = JSON.parse(fs.readFileSync(input).toString());
