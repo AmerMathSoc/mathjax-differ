@@ -97,13 +97,66 @@ const diff_v2_SRE = async (texstring, format) => {
   fs.writeFileSync(texstringhash+'v2-v2sre.png', data.getBuffer());
 };
 
+const TeX = require('mathjax3/mathjax3/input/tex.js').TeX;
+const SVG = require('mathjax3/mathjax3/output/svg.js').SVG;
+const HTMLDocument = require('mathjax3/mathjax3/handlers/html/HTMLDocument.js').HTMLDocument;
+const liteAdaptor = require('mathjax3/mathjax3/adaptors/liteAdaptor.js').liteAdaptor;
+
+const AllPackages = require('mathjax3/mathjax3/input/tex/AllPackages.js').AllPackages;
+const tex = new TeX({packages: AllPackages});
+const svg = new SVG();
+const adaptor = liteAdaptor();
+const html = new HTMLDocument('', adaptor, {InputJax: tex, OutputJax: svg});
+top = true;
+
+const mj3 = (string, display, em = 16, ex = 7.52, cwidth = 0) => {
+    const math = new html.options.MathItem(string, tex, display);
+    math.setMetrics(em, ex, cwidth, 100000, 1);
+    math.compile(html);
+    math.typeset(html)
+    return adaptor.outerHTML(math.typesetRoot);
+};
+
+// TODO merge into one function with options for comparison
+const diff_v2_v3 = async (texstring, format) => {
+  const texstringhash = crypto.createHash('md5').update(texstring).digest("hex");
+
+  const mj2Input = Object.assign({}, mjInputDefault);
+  mj2Input.math = texstring;
+  mj2Input.format = format;
+  const mj2out = await mjpromise(mj2Input);
+  if (mj2out.errors) return new Error('mathjax error')
+  const res = await svg2png(mj2out.svg, texstringhash+'-v2.png');
+  fs.writeFileSync(texstringhash+'-v2.png', res);
+
+  const isDisplay = (format === "TeX");
+  let mj3out = '';
+  try {
+    mj3out = await mj3(texstring, isDisplay);
+  }
+  catch (e) {
+    console.log('mj3 error');
+    return;
+  }
+  const res3 = await svg2png(mj3out)
+
+  const data = await compareImages(res, res3, {});
+  console.log('Same dimension? ' + data.isSameDimensions);
+  console.log('Mismatch: ' + data.misMatchPercentage);
+  if (data.misMatchPercentage < 1) return;
+  fs.writeFileSync(texstringhash+'-v2.png', res);
+  fs.writeFileSync(texstringhash+'-v3.png', res3);
+  fs.writeFileSync(texstringhash+'v2-v3.png', data.getBuffer());
+};
+
 const main = async (input) => {
   const eqnStore = JSON.parse(fs.readFileSync(input).toString());
   for (let key in eqnStore) {
     if (key === 'globalsvg') continue;
     const entry = eqnStore[key];
-    console.log(entry["tex"], entry["format"])
+    console.log(entry["tex"], entry["format"]);
     await diff_v2_SRE(entry["tex"].replace(/&amp;/g, '&').replace(/&gt;/g, '>').replace(/&lt;/g, '<'), entry["format"]);
+    // await diff_v2_v3(entry["tex"].replace(/&amp;/g, '&').replace(/&gt;/g, '>').replace(/&lt;/g, '<'), entry["format"]);
   }
 }
 
