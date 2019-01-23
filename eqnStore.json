@@ -1,0 +1,575 @@
+{
+  "TeX%\\begin{align*} g(z,N) &amp;:= \\log \\prod _{j=1}^N \\frac {1}{1-e^{zj/N}} \\\\ &amp;= - \\sum _{j=1}^N \\log (1-e^{zj/N}) \\\\ &amp;= \\sum _{j=1}^N \\sum _{k=1}^\\infty \\frac {1}{k}e^{zjk/N} = \\sum _{k=1}^\\infty \\frac {1}{k} \\frac {1-e^{kz}}{e^{-kz/N}-1}. \\end{align*}": {
+    "format": "TeX",
+    "tex": "\n        \\begin{align*}\n g(z,N) &:= \\log \\prod _{j=1}^N \\frac {1}{1-e^{zj/N}} \\\\\n &= - \\sum _{j=1}^N \\log (1-e^{zj/N}) \\\\\n &= \\sum _{j=1}^N \\sum _{k=1}^\\infty \\frac {1}{k}e^{zjk/N} = \\sum _{k=1}^\\infty \\frac {1}{k} \\frac {1-e^{kz}}{e^{-kz/N}-1}.\n\\end{align*}\n      "
+  },
+  "TeX%\\begin{align} \\mathcal{M}g(z,\\cdot )(s)&amp;=\\int _0^\\infty g(z,x)x^{s-1}dx \\\\ &amp;= \\sum _{k=1}^\\infty \\frac {1-e^{kz}}{k} \\int _0^\\infty \\frac {x^{s-1}}{e^{-kz/x}-1} dx \\\\ &amp;= \\sum _{k=1}^\\infty \\frac {1-e^{kz}}{k} (-kz)^s \\Gamma (-s)\\zeta (-s) \\\\ &amp;= (-z)^s \\Gamma (-s)\\zeta (-s) \\left(\\sum _{k=1}^\\infty k^{s-1} - \\sum _{k=1}^\\infty k^{s-1} e^{kz} \\right) \\\\ &amp;= (-z)^s \\Gamma (-s)\\zeta (-s) \\Big (\\zeta (1-s) - \\mathrm{Li}_{1-s}(e^z)\\Big ).  \\tag{7}\\cssId{texmlid9}{} \\end{align}": {
+    "format": "TeX",
+    "tex": "\n        \\begin{align}\n \\mathcal{M}g(z,\\cdot )(s)&=\\int _0^\\infty g(z,x)x^{s-1}dx \\\\\n &= \\sum _{k=1}^\\infty \\frac {1-e^{kz}}{k} \\int _0^\\infty \\frac {x^{s-1}}{e^{-kz/x}-1} dx \\\\\n &= \\sum _{k=1}^\\infty \\frac {1-e^{kz}}{k} (-kz)^s \\Gamma (-s)\\zeta (-s) \\\\\n &= (-z)^s \\Gamma (-s)\\zeta (-s) \\left(\\sum _{k=1}^\\infty k^{s-1} - \\sum _{k=1}^\\infty k^{s-1} e^{kz} \\right) \\\\\n &= (-z)^s \\Gamma (-s)\\zeta (-s) \\Big (\\zeta (1-s) - \\mathrm{Li}_{1-s}(e^z)\\Big ).  \\tag{7}\\cssId{texmlid9}{}\n\\end{align}\n      "
+  },
+  "TeX%\\begin{align} |N^{-s}| &amp;= N^{-\\Re s}, \\\\ |(-z)^s| &amp;= |z|^{\\Re s} e^{-\\Im (s) \\arg (-z)},  \\tag{13}\\cssId{texmlid14}{}\\\\ |\\Gamma (-s)| &amp;\\sim \\sqrt {2\\pi } e^{-\\tfrac 12\\pi \\Im s} (\\Im s)^{-\\Re s - 1/2},  \\tag{14}\\cssId{texmlid15}{}\\\\ \\zeta (-s) &amp;= O((\\Im s)^{\\Re s+1/2}),  \\tag{15}\\cssId{texmlid12}{}\\\\ \\zeta (1-s)&amp;= O((\\Im s)^{ \\Re s-1/2}).  \\tag{16}\\cssId{texmlid13}{} \\end{align}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{align}\n |N^{-s}| &= N^{-\\Re s}, \\\\\n |(-z)^s| &= |z|^{\\Re s} e^{-\\Im (s) \\arg (-z)},  \\tag{13}\\cssId{texmlid14}{}\\\\\n |\\Gamma (-s)| &\\sim \\sqrt {2\\pi } e^{-\\tfrac 12\\pi \\Im s} (\\Im s)^{-\\Re s - 1/2},  \\tag{14}\\cssId{texmlid15}{}\\\\\n \\zeta (-s) &= O((\\Im s)^{\\Re s+1/2}),  \\tag{15}\\cssId{texmlid12}{}\\\\\n \\zeta (1-s)&= O((\\Im s)^{ \\Re s-1/2}).  \\tag{16}\\cssId{texmlid13}{}\n\\end{align}\n        "
+  },
+  "TeX%\\begin{equation*} C_{0,1,l}(N) = \\frac {1}{2i\\pi } \\int _{|x|=r} x^{l-1} \\prod _{j=1}^N \\frac {1}{1-(x+1)^j}dx, \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n        \\begin{equation*}\n C_{0,1,l}(N) = \\frac {1}{2i\\pi } \\int _{|x|=r} x^{l-1} \\prod _{j=1}^N \\frac {1}{1-(x+1)^j}dx,\n\\end{equation*}\n      "
+  },
+  "TeX%\\begin{equation*} N^{-\\Re s}\\int _0^\\infty e^{-N^{-7/8}x} x^{\\Re s-1/2}dx= O(N^{-8/7} N^{23/16})=O(N^{33/112}). \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation*}\n N^{-\\Re s}\\int _0^\\infty e^{-N^{-7/8}x} x^{\\Re s-1/2}dx= O(N^{-8/7} N^{23/16})=O(N^{33/112}).\n\\end{equation*}\n        "
+  },
+  "TeX%\\begin{equation*} \\Gamma (s) = O(e^{-\\tfrac 12 \\pi |\\Im s|} |\\Im s|^{\\Re s - 1/2}) \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation*}\n \\Gamma (s) = O(e^{-\\tfrac 12 \\pi |\\Im s|} |\\Im s|^{\\Re s - 1/2})\n\\end{equation*}\n        "
+  },
+  "TeX%\\begin{equation*} \\Re \\left(\\frac 12 \\pm \\frac {\\log (-e^z)}{2i\\pi }\\right)&gt;0, \\quad \\Im \\left(\\frac 12 + \\frac {\\log (-e^z)}{2i\\pi }\\right)&gt;0, \\quad \\text{and} \\quad \\Im \\left(\\frac 12 - \\frac {\\log (-e^z)}{2i\\pi }\\right)&lt;0 \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation*}\n \\Re \\left(\\frac 12 \\pm \\frac {\\log (-e^z)}{2i\\pi }\\right)>0, \\quad \\Im \\left(\\frac 12 + \\frac {\\log (-e^z)}{2i\\pi }\\right)>0, \\quad \\text{and} \\quad \\Im \\left(\\frac 12 - \\frac {\\log (-e^z)}{2i\\pi }\\right)<0\n\\end{equation*}\n        "
+  },
+  "TeX%\\begin{equation*} \\left|\\frac {e^z+1}{e^z-1}\\right| = \\left|1+\\frac {2}{e^z-1}\\right| \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation*}\n \\left|\\frac {e^z+1}{e^z-1}\\right| = \\left|1+\\frac {2}{e^z-1}\\right|\n\\end{equation*}\n        "
+  },
+  "TeX%\\begin{equation*} \\log (1-e^{z/N}) = \\log (-z) - \\log N + O(N^{-1/2}) \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation*}\n \\log (1-e^{z/N}) = \\log (-z) - \\log N + O(N^{-1/2})\n\\end{equation*}\n        "
+  },
+  "TeX%\\begin{equation*} \\mathrm{Li}_{1-s}(e^z) = O( |\\Im s|^{\\Re s -1/2}). \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation*}\n \\mathrm{Li}_{1-s}(e^z) = O( |\\Im s|^{\\Re s -1/2}).\n\\end{equation*}\n        "
+  },
+  "TeX%\\begin{equation*} \\prod _{j=1}^N \\frac {1}{1-x^j} = \\sum _{k=1}^N \\sum _{\\begin{subarray} {c}0\\leq h&lt;k \\\\ \\gcd (h,k)=1 \\end{subarray}} \\sum _{l=1}^{\\lfloor N/k \\rfloor } \\frac {C_{h,k,l}(N)}{(x-e^{2\\pi i h/k})^l}, \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n        \\begin{equation*}\n \\prod _{j=1}^N \\frac {1}{1-x^j} = \\sum _{k=1}^N \\sum _{\\begin{subarray}\n{c}0\\leq h<k \\\\\n \\gcd (h,k)=1\n\\end{subarray}} \\sum _{l=1}^{\\lfloor N/k \\rfloor } \\frac {C_{h,k,l}(N)}{(x-e^{2\\pi i h/k})^l},\n\\end{equation*}\n      "
+  },
+  "TeX%\\begin{equation*} \\zeta (s,q) = O(e^{\\tfrac 12 \\pi \\Im s}). \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation*}\n \\zeta (s,q) = O(e^{\\tfrac 12 \\pi \\Im s}).\n\\end{equation*}\n        "
+  },
+  "TeX%\\begin{equation*} \\zeta (s,q) = \\sum _{n=0}^\\infty \\frac {1}{(q+n)^s}, \\quad \\Re s &gt;1, \\Re q &gt;0, \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation*}\n \\zeta (s,q) = \\sum _{n=0}^\\infty \\frac {1}{(q+n)^s}, \\quad \\Re s >1, \\Re q >0,\n\\end{equation*}\n        "
+  },
+  "TeX%\\begin{equation*} |\\mathrm{Li}_{1-s}(e^z) | \\leq \\mathrm{Li}_{\\Re (1-s)}(e^{\\Re z}) = O(1) \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation*}\n |\\mathrm{Li}_{1-s}(e^z) | \\leq \\mathrm{Li}_{\\Re (1-s)}(e^{\\Re z}) = O(1)\n\\end{equation*}\n        "
+  },
+  "TeX%\\begin{equation*} |\\zeta (s,q)| \\leq \\sum _{n=0}^\\infty |q+n|^{-\\Re s} = O(1), \\end{equation*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation*}\n |\\zeta (s,q)| \\leq \\sum _{n=0}^\\infty |q+n|^{-\\Re s} = O(1),\n\\end{equation*}\n        "
+  },
+  "TeX%\\begin{equation} C_{0,1,l}(N) = \\frac {(-1)^{l-1}}{N^l} \\frac {1}{2i\\pi } \\int _{|z|=5} F(z,N) dz. \\tag{5}\\cssId{texmlid4}{} \\end{equation}": {
+    "format": "TeX",
+    "tex": "\n        \\begin{equation}\n C_{0,1,l}(N) = \\frac {(-1)^{l-1}}{N^l} \\frac {1}{2i\\pi } \\int _{|z|=5} F(z,N) dz. \\tag{5}\\cssId{texmlid4}{}\n\\end{equation}\n      "
+  },
+  "TeX%\\begin{equation} C_{0,1,l}(N) = b^N N^{-l-1} H_l(N) + O(b^N N^{-l-117/112}), \\quad N\\to \\infty , \\tag{3}\\cssId{texmlid3}{} \\end{equation}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation}\n C_{0,1,l}(N) = b^N N^{-l-1} H_l(N) + O(b^N N^{-l-117/112}), \\quad N\\to \\infty , \\tag{3}\\cssId{texmlid3}{}\n\\end{equation}\n        "
+  },
+  "TeX%\\begin{equation} F(z,N) := e^{f(z,N)} := e^{z/N}N^{l-1}(1-e^{z/N})^{l-1}\\prod _{j=1}^N \\frac {1}{1-e^{zj/N}}, \\tag{4 $x^2$}\\cssId{texmlid5}{} \\end{equation}": {
+    "format": "TeX",
+    "tex": "\n        \\begin{equation}\n F(z,N) := e^{f(z,N)} := e^{z/N}N^{l-1}(1-e^{z/N})^{l-1}\\prod _{j=1}^N \\frac {1}{1-e^{zj/N}}, \\tag{4 $x^2$}\\cssId{texmlid5}{}\n\\end{equation}\n      "
+  },
+  "TeX%\\begin{equation} \\log (1-e^z) + \\frac {1}{z}(\\mathrm{Li}_2(e^z)-\\pi ^2/6) = 0. \\tag{1}\\cssId{texmlid17}{} \\end{equation}": {
+    "format": "TeX",
+    "tex": "\n        \\begin{equation}\n \\log (1-e^z) + \\frac {1}{z}(\\mathrm{Li}_2(e^z)-\\pi ^2/6) = 0. \\tag{1}\\cssId{texmlid17}{}\n\\end{equation}\n      "
+  },
+  "TeX%\\begin{equation} \\mathrm{Li}_{1-s}(e^z) = \\frac {\\Gamma (s)}{(2\\pi )^s} \\left( i^s \\zeta \\left(s,\\frac 12 + \\frac {\\log (-e^z)}{2i\\pi }\\right) + i^{-s} \\zeta \\left(s,\\frac 12 - \\frac {\\log (-e^z)}{2i\\pi }\\right)\\right), \\tag{9}\\cssId{texmlid7}{} \\end{equation}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation}\n \\mathrm{Li}_{1-s}(e^z) = \\frac {\\Gamma (s)}{(2\\pi )^s} \\left( i^s \\zeta \\left(s,\\frac 12 + \\frac {\\log (-e^z)}{2i\\pi }\\right) + i^{-s} \\zeta \\left(s,\\frac 12 - \\frac {\\log (-e^z)}{2i\\pi }\\right)\\right), \\tag{9}\\cssId{texmlid7}{}\n\\end{equation}\n        "
+  },
+  "TeX%\\begin{equation} \\prod _{j=1}^N \\frac 1{1-e^{zj/N}} = (-1)^N e^{-z(N+1)/2} \\prod _{j=1}^N \\frac 1{1-e^{-zj/N}} \\tag{6}\\cssId{texmlid30}{} \\end{equation}": {
+    "format": "TeX",
+    "tex": "\n        \\begin{equation}\n \\prod _{j=1}^N \\frac 1{1-e^{zj/N}} = (-1)^N e^{-z(N+1)/2} \\prod _{j=1}^N \\frac 1{1-e^{-zj/N}} \\tag{6}\\cssId{texmlid30}{}\n\\end{equation}\n      "
+  },
+  "TeX%\\begin{equation} a = \\frac { \\pi }{2} - \\frac 12 \\arg \\left( \\frac {e^{z_0}}{z_0(1-e^{z_0})} \\right) \\approx 1.79. \\tag{2}\\cssId{texmlid31}{} \\end{equation}": {
+    "format": "TeX",
+    "tex": "\n        \\begin{equation}\n a = \\frac { \\pi }{2} - \\frac 12 \\arg \\left( \\frac {e^{z_0}}{z_0(1-e^{z_0})} \\right) \\approx 1.79. \\tag{2}\\cssId{texmlid31}{}\n\\end{equation}\n      "
+  },
+  "TeX%\\begin{equation} g(z,N) = \\frac {1}{2i\\pi } \\int _{-3/2-i\\infty }^{-3/2+i \\infty } \\mathcal{M}g(z,\\cdot )(s) N^{-s}ds. \\tag{8}\\cssId{texmlid8}{} \\end{equation}": {
+    "format": "TeX",
+    "tex": "\n        \\begin{equation}\n g(z,N) = \\frac {1}{2i\\pi } \\int _{-3/2-i\\infty }^{-3/2+i \\infty } \\mathcal{M}g(z,\\cdot )(s) N^{-s}ds. \\tag{8}\\cssId{texmlid8}{}\n\\end{equation}\n      "
+  },
+  "TeX%\\begin{equation} |q+n|^{-s} = |q+n|^{-\\Re s} e^{\\Im (s) \\arg (q+n)} \\tag{10}\\cssId{texmlid6}{} \\end{equation}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{equation}\n |q+n|^{-s} = |q+n|^{-\\Re s} e^{\\Im (s) \\arg (q+n)} \\tag{10}\\cssId{texmlid6}{}\n\\end{equation}\n        "
+  },
+  "TeX%\\begin{multline*} H_l(N) = \\frac {(-1)^{l-1}}{\\pi } \\sqrt {-\\frac {z_0(1-e^{z_0})}{\\rho ^2e^{z_0}}} \\Bigg (\\Im \\left( \\frac {\\rho (-z_0)^{l-1/2}}{\\sqrt {1-e^{z_0}}}\\right)\\cos (2\\pi N/p)) \\\\ +\\Re \\left(\\frac {\\rho (-z_0)^{l-1/2}}{\\sqrt {1-e^{z_0}}}\\right)\\sin (2\\pi N /p)\\Bigg ). \\end{multline*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{multline*}\n H_l(N) = \\frac {(-1)^{l-1}}{\\pi } \\sqrt {-\\frac {z_0(1-e^{z_0})}{\\rho ^2e^{z_0}}} \\Bigg (\\Im \\left( \\frac {\\rho (-z_0)^{l-1/2}}{\\sqrt {1-e^{z_0}}}\\right)\\cos (2\\pi N/p)) \\\\\n +\\Re \\left(\\frac {\\rho (-z_0)^{l-1/2}}{\\sqrt {1-e^{z_0}}}\\right)\\sin (2\\pi N /p)\\Bigg ).\n\\end{multline*}\n        "
+  },
+  "TeX%\\begin{multline*} g(z,N) = \\frac {1}{z}\\Big ( \\mathrm{Li}_2(e^z) - \\frac {\\pi ^2}{6}\\Big )N - \\frac 12 \\log N - \\frac 12 \\Big (\\log 2\\pi +\\log (1-e^{z}) - \\log (-z)\\Big )\\\\ + \\frac {z(e^z+1)}{24(e^z-1)} \\frac 1N +\\frac {1}{2i\\pi }\\int _{8/7-i\\infty }^{8/7+i\\infty } \\mathcal{M}g(z,\\cdot )(s) N^{-s} ds. \\end{multline*}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{multline*}\n g(z,N) = \\frac {1}{z}\\Big ( \\mathrm{Li}_2(e^z) - \\frac {\\pi ^2}{6}\\Big )N - \\frac 12 \\log N - \\frac 12 \\Big (\\log 2\\pi +\\log (1-e^{z}) - \\log (-z)\\Big )\\\\\n + \\frac {z(e^z+1)}{24(e^z-1)} \\frac 1N +\\frac {1}{2i\\pi }\\int _{8/7-i\\infty }^{8/7+i\\infty } \\mathcal{M}g(z,\\cdot )(s) N^{-s} ds.\n\\end{multline*}\n        "
+  },
+  "TeX%\\begin{multline} C_{0,1,l}(N) \\tag{17}\\cssId{texmlid16}{}\\\\ \\approx \\frac {(-1)^{l-1}}{N^{l+1/2}(2\\pi )^{3/2}i} \\int _{|z|=5, \\Re z\\leq 0} \\frac {(-z)^{l-1/2}}{\\sqrt {1-e^z}} \\exp \\left( \\frac {z}{N} + \\frac {N}{z} \\left( \\mathrm{Li}_2(e^z) - \\frac {\\pi ^2}{6}\\right) \\right) dz, \\end{multline}": {
+    "format": "TeX",
+    "tex": "\n        \\begin{multline}\n C_{0,1,l}(N) \\tag{17}\\cssId{texmlid16}{}\\\\\n \\approx \\frac {(-1)^{l-1}}{N^{l+1/2}(2\\pi )^{3/2}i} \\int _{|z|=5, \\Re z\\leq 0} \\frac {(-z)^{l-1/2}}{\\sqrt {1-e^z}} \\exp \\left( \\frac {z}{N} + \\frac {N}{z} \\left( \\mathrm{Li}_2(e^z) - \\frac {\\pi ^2}{6}\\right) \\right) dz,\n\\end{multline}\n      "
+  },
+  "TeX%\\begin{multline} f(z,N) = \\frac {1}{z}\\Big ( \\mathrm{Li}_2(e^z) - \\frac {\\pi ^2}{6}\\Big )N - \\frac 12 \\log N \\tag{11}\\cssId{texmlid10}{}\\\\ - \\frac 12 \\Big (\\log 2\\pi +\\log (1-e^{z}) - \\log (-z)\\Big ) +(l-1)\\log (-z)+ h(z,N), \\end{multline}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{multline}\n f(z,N) = \\frac {1}{z}\\Big ( \\mathrm{Li}_2(e^z) - \\frac {\\pi ^2}{6}\\Big )N - \\frac 12 \\log N \\tag{11}\\cssId{texmlid10}{}\\\\\n - \\frac 12 \\Big (\\log 2\\pi +\\log (1-e^{z}) - \\log (-z)\\Big ) +(l-1)\\log (-z)+ h(z,N),\n\\end{multline}\n        "
+  },
+  "TeX%\\begin{multline} h(z,N) = \\frac {z(e^z+1)}{24(e^z-1)} \\frac 1N +\\frac {z}{N} + \\frac {1}{2i\\pi }\\int _{8/7-i\\infty }^{8/7+i\\infty } \\mathcal{M}g(z,\\cdot )(s) N^{-s} ds \\tag{12}\\cssId{texmlid11}{}\\\\ -(l-1) \\log (-z) + (l-1) (\\log N + \\log (1-e^{z/N})). \\end{multline}": {
+    "format": "TeX",
+    "tex": "\n          \\begin{multline}\n h(z,N) = \\frac {z(e^z+1)}{24(e^z-1)} \\frac 1N +\\frac {z}{N} + \\frac {1}{2i\\pi }\\int _{8/7-i\\infty }^{8/7+i\\infty } \\mathcal{M}g(z,\\cdot )(s) N^{-s} ds \\tag{12}\\cssId{texmlid11}{}\\\\\n -(l-1) \\log (-z) + (l-1) (\\log N + \\log (1-e^{z/N})).\n\\end{multline}\n        "
+  },
+  "TeX%\\text{A display equation without reference} \\cssId{kitchensink8}{}": {
+    "format": "TeX",
+    "tex": "\n         \\text{A display equation without reference} \\cssId{kitchensink8}{}\n        "
+  },
+  "TeX%\\text{Another display equation} \\cssId{kitchensink14}{}\\tag{Inception}": {
+    "format": "TeX",
+    "tex": "\n          \\text{Another display equation} \\cssId{kitchensink14}{}\\tag{Inception}\n        "
+  },
+  "globalsvg": "",
+  "inline-TeX%(0,2\\pi )": {
+    "format": "inline-TeX",
+    "tex": "(0,2\\pi )"
+  },
+  "inline-TeX%(0,\\infty )": {
+    "format": "inline-TeX",
+    "tex": "(0,\\infty )"
+  },
+  "inline-TeX%(2)": {
+    "format": "inline-TeX",
+    "tex": "(2)"
+  },
+  "inline-TeX%(2\\pi )^{-s}": {
+    "format": "inline-TeX",
+    "tex": "(2\\pi )^{-s}"
+  },
+  "inline-TeX%(h,k)=(0,1)": {
+    "format": "inline-TeX",
+    "tex": "(h,k)=(0,1)"
+  },
+  "inline-TeX%-\\pi /2": {
+    "format": "inline-TeX",
+    "tex": "-\\pi /2"
+  },
+  "inline-TeX%0": {
+    "format": "inline-TeX",
+    "tex": "0"
+  },
+  "inline-TeX%0&lt;r&lt;|e^{2i\\pi /N}-1|": {
+    "format": "inline-TeX",
+    "tex": "0<r<|e^{2i\\pi /N}-1|"
+  },
+  "inline-TeX%1": {
+    "format": "inline-TeX",
+    "tex": "1"
+  },
+  "inline-TeX%32": {
+    "format": "inline-TeX",
+    "tex": "32"
+  },
+  "inline-TeX%8": {
+    "format": "inline-TeX",
+    "tex": "8"
+  },
+  "inline-TeX%C_{0,1,1}(N)": {
+    "format": "inline-TeX",
+    "tex": "C_{0,1,1}(N)"
+  },
+  "inline-TeX%C_{0,1,2}(N)": {
+    "format": "inline-TeX",
+    "tex": "C_{0,1,2}(N)"
+  },
+  "inline-TeX%C_{0,1,l}(N)": {
+    "format": "inline-TeX",
+    "tex": "C_{0,1,l}(N)"
+  },
+  "inline-TeX%C_{h,k,1}(N)": {
+    "format": "inline-TeX",
+    "tex": "C_{h,k,1}(N)"
+  },
+  "inline-TeX%C_{h,k,l}(N)": {
+    "format": "inline-TeX",
+    "tex": "C_{h,k,l}(N)"
+  },
+  "inline-TeX%F": {
+    "format": "inline-TeX",
+    "tex": "F"
+  },
+  "inline-TeX%GL(2)": {
+    "format": "inline-TeX",
+    "tex": "GL(2)"
+  },
+  "inline-TeX%GL(n)": {
+    "format": "inline-TeX",
+    "tex": "GL(n)"
+  },
+  "inline-TeX%H_l": {
+    "format": "inline-TeX",
+    "tex": "H_l"
+  },
+  "inline-TeX%K_{p,q}": {
+    "format": "inline-TeX",
+    "tex": "K_{p,q}"
+  },
+  "inline-TeX%L": {
+    "format": "inline-TeX",
+    "tex": "L"
+  },
+  "inline-TeX%N": {
+    "format": "inline-TeX",
+    "tex": "N"
+  },
+  "inline-TeX%N=1,\\dotsc ,70": {
+    "format": "inline-TeX",
+    "tex": "N=1,\\dotsc ,70"
+  },
+  "inline-TeX%N=100,\\dotsc ,150": {
+    "format": "inline-TeX",
+    "tex": "N=100,\\dotsc ,150"
+  },
+  "inline-TeX%N\\to \\infty": {
+    "format": "inline-TeX",
+    "tex": "N\\to \\infty "
+  },
+  "inline-TeX%O((\\Im s)^{\\Re s-1/2})": {
+    "format": "inline-TeX",
+    "tex": "O((\\Im s)^{\\Re s-1/2})"
+  },
+  "inline-TeX%O(1)": {
+    "format": "inline-TeX",
+    "tex": "O(1)"
+  },
+  "inline-TeX%O(N^{-1/2})": {
+    "format": "inline-TeX",
+    "tex": "O(N^{-1/2})"
+  },
+  "inline-TeX%O(N^{-\\Re s}|z|^{\\Re s})=O(N^{-4/7})=O(N^{-1/2})": {
+    "format": "inline-TeX",
+    "tex": "O(N^{-\\Re s}|z|^{\\Re s})=O(N^{-4/7})=O(N^{-1/2})"
+  },
+  "inline-TeX%O(N^{33/112})": {
+    "format": "inline-TeX",
+    "tex": "O(N^{33/112})"
+  },
+  "inline-TeX%\\Gamma (-s)": {
+    "format": "inline-TeX",
+    "tex": "\\Gamma (-s)"
+  },
+  "inline-TeX%\\Im q &gt;0": {
+    "format": "inline-TeX",
+    "tex": "\\Im q >0"
+  },
+  "inline-TeX%\\Im q &lt;0": {
+    "format": "inline-TeX",
+    "tex": "\\Im q <0"
+  },
+  "inline-TeX%\\Im s": {
+    "format": "inline-TeX",
+    "tex": "\\Im s"
+  },
+  "inline-TeX%\\Im s \\to +\\infty": {
+    "format": "inline-TeX",
+    "tex": "\\Im s \\to +\\infty "
+  },
+  "inline-TeX%\\Im s&lt;0": {
+    "format": "inline-TeX",
+    "tex": "\\Im s<0"
+  },
+  "inline-TeX%\\Im s\\to -\\infty": {
+    "format": "inline-TeX",
+    "tex": "\\Im s\\to -\\infty "
+  },
+  "inline-TeX%\\Im s\\to \\infty": {
+    "format": "inline-TeX",
+    "tex": "\\Im s\\to \\infty "
+  },
+  "inline-TeX%\\Re (s)&lt;-1": {
+    "format": "inline-TeX",
+    "tex": "\\Re (s)<-1"
+  },
+  "inline-TeX%\\Re q&gt;0": {
+    "format": "inline-TeX",
+    "tex": "\\Re q>0"
+  },
+  "inline-TeX%\\Re s =8/7": {
+    "format": "inline-TeX",
+    "tex": "\\Re s =8/7"
+  },
+  "inline-TeX%\\Re s&gt;1": {
+    "format": "inline-TeX",
+    "tex": "\\Re s>1"
+  },
+  "inline-TeX%\\Re s= 8/7": {
+    "format": "inline-TeX",
+    "tex": "\\Re s= 8/7"
+  },
+  "inline-TeX%\\Re s=8/7": {
+    "format": "inline-TeX",
+    "tex": "\\Re s=8/7"
+  },
+  "inline-TeX%\\Re z &lt; -N^{-7/8}": {
+    "format": "inline-TeX",
+    "tex": "\\Re z < -N^{-7/8}"
+  },
+  "inline-TeX%\\Re z &lt; 0": {
+    "format": "inline-TeX",
+    "tex": "\\Re z < 0"
+  },
+  "inline-TeX%\\Re z&lt;0": {
+    "format": "inline-TeX",
+    "tex": "\\Re z<0"
+  },
+  "inline-TeX%\\Re z\\to 0": {
+    "format": "inline-TeX",
+    "tex": "\\Re z\\to 0"
+  },
+  "inline-TeX%\\arg (-z)": {
+    "format": "inline-TeX",
+    "tex": "\\arg (-z)"
+  },
+  "inline-TeX%\\arg (-z) + \\pi /2 \\sim -\\Re z": {
+    "format": "inline-TeX",
+    "tex": "\\arg (-z) + \\pi /2 \\sim -\\Re z"
+  },
+  "inline-TeX%\\arg (q+n)&lt;0": {
+    "format": "inline-TeX",
+    "tex": "\\arg (q+n)<0"
+  },
+  "inline-TeX%\\exp (-\\Im (s) (\\arg (-z) + \\tfrac 12 \\pi )) \\leq \\exp (-\\varepsilon \\Im s)": {
+    "format": "inline-TeX",
+    "tex": "\\exp (-\\Im (s) (\\arg (-z) + \\tfrac 12 \\pi )) \\leq \\exp (-\\varepsilon \\Im s)"
+  },
+  "inline-TeX%\\mathbb{Q}": {
+    "format": "inline-TeX",
+    "tex": "\\mathbb{Q}"
+  },
+  "inline-TeX%\\mathrm{Li}_2(w) = \\sum _{k\\geq 1}w^k/k^2": {
+    "format": "inline-TeX",
+    "tex": "\\mathrm{Li}_2(w) = \\sum _{k\\geq 1}w^k/k^2"
+  },
+  "inline-TeX%\\mathrm{Li}_\\nu (w)": {
+    "format": "inline-TeX",
+    "tex": "\\mathrm{Li}_\\nu (w)"
+  },
+  "inline-TeX%\\mathrm{Li}_\\nu (w) = \\sum _{k\\geq 1}w^k/k^\\nu": {
+    "format": "inline-TeX",
+    "tex": "\\mathrm{Li}_\\nu (w) = \\sum _{k\\geq 1}w^k/k^\\nu "
+  },
+  "inline-TeX%\\mathrm{Li}_{1-s}(e^z)": {
+    "format": "inline-TeX",
+    "tex": " \\mathrm{Li}_{1-s}(e^z)"
+  },
+  "inline-TeX%\\mathrm{\\LaTeX}": {
+    "format": "inline-TeX",
+    "tex": "\\mathrm{\\LaTeX}"
+  },
+  "inline-TeX%\\nu": {
+    "format": "inline-TeX",
+    "tex": "\\nu "
+  },
+  "inline-TeX%\\nu \\in \\mathbb{C}": {
+    "format": "inline-TeX",
+    "tex": "\\nu \\in \\mathbb{C}"
+  },
+  "inline-TeX%\\nu \\to 0": {
+    "format": "inline-TeX",
+    "tex": "\\nu \\to 0"
+  },
+  "inline-TeX%\\nu \\to \\infty": {
+    "format": "inline-TeX",
+    "tex": "\\nu \\to \\infty "
+  },
+  "inline-TeX%\\pm 2i\\pi": {
+    "format": "inline-TeX",
+    "tex": "\\pm 2i\\pi "
+  },
+  "inline-TeX%\\prod _{j=1}^N": {
+    "format": "inline-TeX",
+    "tex": "\\prod _{j=1}^N"
+  },
+  "inline-TeX%\\prod _{j=1}^N (1-x^j)^{-1}": {
+    "format": "inline-TeX",
+    "tex": "\\prod _{j=1}^N (1-x^j)^{-1}"
+  },
+  "inline-TeX%\\prod _{j\\geq 1}(1-x^j)^{-1}": {
+    "format": "inline-TeX",
+    "tex": "\\prod _{j\\geq 1}(1-x^j)^{-1}"
+  },
+  "inline-TeX%\\rho =\\exp (i a)": {
+    "format": "inline-TeX",
+    "tex": "\\rho =\\exp (i a)"
+  },
+  "inline-TeX%\\sum _{n=1}^{\\infty } \\frac {x^n}{n^s}": {
+    "format": "inline-TeX",
+    "tex": "\\sum _{n=1}^{\\infty } \\frac {x^n}{n^s}"
+  },
+  "inline-TeX%\\zeta (-s)": {
+    "format": "inline-TeX",
+    "tex": "\\zeta (-s)"
+  },
+  "inline-TeX%\\zeta (1-s)": {
+    "format": "inline-TeX",
+    "tex": "\\zeta (1-s)"
+  },
+  "inline-TeX%\\{1,\\dotsc ,N\\}": {
+    "format": "inline-TeX",
+    "tex": "\\{1,\\dotsc ,N\\}"
+  },
+  "inline-TeX%a \\overset { \\xhref[disp-formula]{#texmlid16}{17} , \\xhref[statement]{#ltxid8}{3} , \\xhref[sec]{#ltxid6}{2} , \\xhref[bibr]{#bibr-Ti86}{16} , \\xhref[table]{#kitchensink15}{1} , \\xhref[fig]{#ltxid4}{1} }{=} b": {
+    "format": "inline-TeX",
+    "tex": "a \\overset {\n  \\xhref[disp-formula]{#texmlid16}{17}\n, \n  \\xhref[statement]{#ltxid8}{3}\n, \n  \\xhref[sec]{#ltxid6}{2}\n, \n  \\xhref[bibr]{#bibr-Ti86}{16}\n, \n  \\xhref[table]{#kitchensink15}{1}\n, \n  \\xhref[fig]{#ltxid4}{1}\n}{=} b"
+  },
+  "inline-TeX%b=1/|1-e^{z_0}|\\approx 1.07": {
+    "format": "inline-TeX",
+    "tex": "b=1/|1-e^{z_0}|\\approx 1.07"
+  },
+  "inline-TeX%b^N": {
+    "format": "inline-TeX",
+    "tex": "b^N"
+  },
+  "inline-TeX%b^p\\approx 8.81": {
+    "format": "inline-TeX",
+    "tex": "b^p\\approx 8.81"
+  },
+  "inline-TeX%c&gt;0": {
+    "format": "inline-TeX",
+    "tex": "c>0"
+  },
+  "inline-TeX%c&lt;|\\Im z|&lt;8": {
+    "format": "inline-TeX",
+    "tex": "c<|\\Im z|<8"
+  },
+  "inline-TeX%e^z": {
+    "format": "inline-TeX",
+    "tex": "e^z"
+  },
+  "inline-TeX%e^{-Nz/2}": {
+    "format": "inline-TeX",
+    "tex": "e^{-Nz/2}"
+  },
+  "inline-TeX%e^{\\Im (s) \\arg (q+n)} \\leq e^{\\tfrac 12 \\pi \\Im s}": {
+    "format": "inline-TeX",
+    "tex": "e^{\\Im (s) \\arg (q+n)} \\leq e^{\\tfrac 12 \\pi \\Im s}"
+  },
+  "inline-TeX%f": {
+    "format": "inline-TeX",
+    "tex": "f"
+  },
+  "inline-TeX%f=\\log F": {
+    "format": "inline-TeX",
+    "tex": "f=\\log F"
+  },
+  "inline-TeX%g": {
+    "format": "inline-TeX",
+    "tex": "g"
+  },
+  "inline-TeX%h": {
+    "format": "inline-TeX",
+    "tex": "h"
+  },
+  "inline-TeX%h,k": {
+    "format": "inline-TeX",
+    "tex": "h,k"
+  },
+  "inline-TeX%h,k \\le 100": {
+    "format": "inline-TeX",
+    "tex": "h,k \\le 100"
+  },
+  "inline-TeX%l": {
+    "format": "inline-TeX",
+    "tex": "l"
+  },
+  "inline-TeX%l=1": {
+    "format": "inline-TeX",
+    "tex": "l=1"
+  },
+  "inline-TeX%l=2": {
+    "format": "inline-TeX",
+    "tex": "l=2"
+  },
+  "inline-TeX%l\\geq 1": {
+    "format": "inline-TeX",
+    "tex": "l\\geq 1"
+  },
+  "inline-TeX%p": {
+    "format": "inline-TeX",
+    "tex": "p"
+  },
+  "inline-TeX%p=2\\pi /|\\arg (1-e^{z_0})|": {
+    "format": "inline-TeX",
+    "tex": "p=2\\pi /|\\arg (1-e^{z_0})|"
+  },
+  "inline-TeX%p=2\\pi /|\\arg (1-e^{z_0})|\\approx 31.96": {
+    "format": "inline-TeX",
+    "tex": "p=2\\pi /|\\arg (1-e^{z_0})|\\approx 31.96"
+  },
+  "inline-TeX%q": {
+    "format": "inline-TeX",
+    "tex": "q"
+  },
+  "inline-TeX%s": {
+    "format": "inline-TeX",
+    "tex": "s"
+  },
+  "inline-TeX%s=-1": {
+    "format": "inline-TeX",
+    "tex": "s=-1"
+  },
+  "inline-TeX%s=0": {
+    "format": "inline-TeX",
+    "tex": "s=0"
+  },
+  "inline-TeX%s=1": {
+    "format": "inline-TeX",
+    "tex": "s=1"
+  },
+  "inline-TeX%x+1=e^{z/N}": {
+    "format": "inline-TeX",
+    "tex": "x+1=e^{z/N}"
+  },
+  "inline-TeX%x=1": {
+    "format": "inline-TeX",
+    "tex": "x=1"
+  },
+  "inline-TeX%z": {
+    "format": "inline-TeX",
+    "tex": "z"
+  },
+  "inline-TeX%z/N": {
+    "format": "inline-TeX",
+    "tex": "z/N"
+  },
+  "inline-TeX%z=O(N^{1/2})": {
+    "format": "inline-TeX",
+    "tex": "z=O(N^{1/2})"
+  },
+  "inline-TeX%z_0\\approx -1.61 + 7.42i": {
+    "format": "inline-TeX",
+    "tex": "z_0\\approx -1.61 + 7.42i"
+  },
+  "inline-TeX%|\\Im s|": {
+    "format": "inline-TeX",
+    "tex": "|\\Im s|"
+  },
+  "inline-TeX%|\\Im s|\\to \\infty": {
+    "format": "inline-TeX",
+    "tex": "|\\Im s|\\to \\infty "
+  },
+  "inline-TeX%|\\Im z|&lt;8": {
+    "format": "inline-TeX",
+    "tex": "|\\Im z|<8"
+  },
+  "inline-TeX%|\\arg z|\\geq \\pi /2+\\varepsilon": {
+    "format": "inline-TeX",
+    "tex": "|\\arg z|\\geq \\pi /2+\\varepsilon "
+  },
+  "inline-TeX%|i^{\\pm s}|=\\exp (\\mp \\tfrac 12\\pi \\Im s)": {
+    "format": "inline-TeX",
+    "tex": "|i^{\\pm s}|=\\exp (\\mp \\tfrac 12\\pi \\Im s)"
+  },
+  "inline-TeX%|w|&lt;1": {
+    "format": "inline-TeX",
+    "tex": "|w|<1"
+  },
+  "inline-TeX%|z|^{\\Re s}": {
+    "format": "inline-TeX",
+    "tex": "|z|^{\\Re s}"
+  }
+}
