@@ -56,19 +56,19 @@ const svg2png = async svgstring => {
     process.exit(1);
   });
   const page = await browser.newPage();
-  await page.setViewport({ width: 1000, height: 1000, deviceScaleFactor: 2 });
+  await page.setViewport({ width: 1000, height: 1000, deviceScaleFactor: 4 });
   await page.goto(
     'data:text/html, %3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cmeta%20charset%3D%22utf-8%22%3E%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%22%3E%3Ctitle%3Etitle%3C%2Ftitle%3E%3C%2Fhead%3E%3Cbody%3E%3C%2Fbody%3E%3C%2Fhtml%3E'
   );
   await page.evaluate(
     s =>
       (document.body.innerHTML =
-        '<span style="height: 1000px; width: 1000px; display:inline-flex; padding: 1px;">' +
+        '<span style="display:inline-flex; padding: 5px">' + //padding b/c v3 may be cut off
         s +
         '</span>'),
     svgstring
   );
-  const svg = await page.$('svg');
+  const svg = await page.$('span');
   const result = await svg.screenshot();
   await browser.close();
   return result;
@@ -107,80 +107,82 @@ const mj3 = (string, display, em = 16, ex = 7.52, cwidth = 0) => {
   return adaptor.innerHTML(math.typesetRoot);
 };
 
-const diff = async (texstring, format, mjversion) => {
+const diff = async (texstring, format) => {
   const texstringhash = crypto
     .createHash('md5')
     .update(texstring)
     .digest('hex');
 
-  let svg1 = {};
   let svg2 = {};
+  let svg2sre = {};
+  let svg3 = {};
 
   // run mj2
   const mj2Input = Object.assign({}, mjInputDefault);
   mj2Input.math = texstring;
   mj2Input.format = format;
-  svg1 = await mj2promise(mj2Input);
-  if (svg1.errors) return new Error('mathjax error');
-  fs.writeFileSync(texstringhash + '-v2.svg', svg1.svg);
+  svg2 = await mj2promise(mj2Input);
+  if (svg2.errors) return new Error('mathjax error');
+  // fs.writeFileSync(texstringhash + '-v2.svg', svg2.svg);
 
   // run mj2 + SRE enrichment
-  if (mjversion === 'v2sre') {
-    const mj2sreInput = Object.assign({}, mjInputDefault);
-    mj2sreInput.math = texstring;
-    mj2sreInput.enrich = true;
-    mj2sreInput.format = 'TeX';
-    svg2 = await mj2promise(mj2sreInput);
-    fs.writeFileSync(texstringhash + '-SRE.svg', svg2.svg);
-  }
+  const mj2sreInput = Object.assign({}, mjInputDefault);
+  mj2sreInput.math = texstring;
+  mj2sreInput.enrich = true;
+  mj2sreInput.format = 'TeX';
+  svg2sre = await mj2promise(mj2sreInput);
+  // fs.writeFileSync(texstringhash + '-SRE.svg', svg2sre.svg);
 
   // run mj3
-  if (mjversion === 'v3') {
-    const isDisplay = format === 'TeX';
-    try {
-      svg2.svg = await mj3(texstring, isDisplay);
-    } catch (e) {
-      console.log('mj3 error');
-      return;
-    }
-    fs.writeFileSync(texstringhash + '-v3.svg', svg2.svg);
+  const isDisplay = format === 'TeX';
+  try {
+    svg3.svg = await mj3(texstring, isDisplay);
+  } catch (e) {
+    console.log('mj3 error');
+    return;
   }
+  // fs.writeFileSync(texstringhash + '-v3.svg', svg3.svg);
 
   // svg2png
-  const res1 = await svg2png(svg1.svg, texstringhash + '-v2.png');
-  const res2 = await svg2png(svg2.svg);
+  const png2 = await svg2png(svg2.svg);
+  const pngsre = await svg2png(svg2sre.svg);
+  const png3 = await svg2png(svg3.svg);
 
   // diff
-  const data = await compareImages(res1, res2, {});
-  console.log('Same dimension? ' + data.isSameDimensions);
-  console.log('Mismatch: ' + data.misMatchPercentage);
-  if (data.misMatchPercentage < 1) return;
+  const options = {
+    scaleToSameSize: true,
+    ignore: 'antialiasing'
+  };
+  const diff_2_sre = await compareImages(png2, pngsre, options);
+  console.log('v2 vs SRE - Same dimension? ' + diff_2_sre.isSameDimensions);
+  console.log('v2 vs SRE - Mismatch: ' + diff_2_sre.misMatchPercentage);
+  const diff_2_3 = await compareImages(png2, png3, options);
+  console.log('v2 vs v3 - Same dimension? ' + diff_2_3.isSameDimensions);
+  console.log('v2 vs v3 - Mismatch: ' + diff_2_3.misMatchPercentage);
 
   // write output if mismatch
-  fs.writeFileSync(texstringhash + '-v2.png', res1);
-  fs.writeFileSync(texstringhash + '-' + mjversion + '.png', res2);
-  fs.writeFileSync(texstringhash + 'v2-' + mjversion + '.png', data.getBuffer());
+  if (diff_2_sre.misMatchPercentage > 1 || diff_2_3.misMatchPercentage > 1)
+    fs.writeFileSync(texstringhash + '-v2.png', png2);
+  if (diff_2_sre.misMatchPercentage > 1) {
+    fs.writeFileSync(texstringhash + '-v2sre.png', pngsre);
+    fs.writeFileSync(texstringhash + '-v2-v2sre.png', diff_2_sre.getBuffer());
+  }
+  if (diff_2_3.misMatchPercentage > 1) {
+    fs.writeFileSync(texstringhash + '-v3.png', png3);
+    fs.writeFileSync(texstringhash + '-v2-v3.png', diff_2_3.getBuffer());
+  }
 };
 
 const main = async input => {
   if (!fs.existsSync(input)) {
-    await diff(
-      input,
-      'TeX',
-      'v3'
-    );
+    await diff(input, 'TeX');
     return;
   }
   const eqnStore = JSON.parse(fs.readFileSync(input).toString());
   for (let key in eqnStore) {
-    if (key === 'globalsvg') continue;
     const entry = eqnStore[key];
     console.log(entry['tex'], entry['format']);
-    await diff(
-      entry['tex'],
-      entry['format'],
-      'v3'
-    );
+    await diff(entry['tex'], entry['format']);
   }
 };
 
