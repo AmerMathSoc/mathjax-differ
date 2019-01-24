@@ -3,6 +3,7 @@ process.on('unhandledRejection', r => console.log(r));
 const fs = require('fs');
 const crypto = require('crypto');
 const compareImages = require('resemblejs/compareImages');
+const Jimp = require('jimp');
 
 //
 // MathJax v2 setup
@@ -71,7 +72,10 @@ const svg2png = async svgstring => {
   const svg = await page.$('span');
   const result = await svg.screenshot();
   await browser.close();
-  return result;
+  // autocrop with JIMP
+  const jimped = await Jimp.read(result);
+  jimped.autocrop();
+  return jimped.getBufferAsync('image/png');
 };
 
 //
