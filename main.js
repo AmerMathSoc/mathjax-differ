@@ -1,4 +1,11 @@
-process.on('unhandledRejection', r => console.log(r));
+/*
+ *  main.js
+ *
+ *  Copyright (c) 2019 American Mathematical Society
+ *
+ */
+
+ process.on('unhandledRejection', r => console.log(r));
 
 const fs = require('fs');
 const crypto = require('crypto');
