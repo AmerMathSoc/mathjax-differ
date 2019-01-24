@@ -412,10 +412,6 @@
     "format": "inline-TeX",
     "tex": "\\{1,\\dotsc ,N\\}"
   },
-  "inline-TeX%a \\overset { \\xhref[disp-formula]{#texmlid16}{17} , \\xhref[statement]{#ltxid8}{3} , \\xhref[sec]{#ltxid6}{2} , \\xhref[bibr]{#bibr-Ti86}{16} , \\xhref[table]{#kitchensink15}{1} , \\xhref[fig]{#ltxid4}{1} }{=} b": {
-    "format": "inline-TeX",
-    "tex": "a \\overset {\n  \\xhref[disp-formula]{#texmlid16}{17}\n, \n  \\xhref[statement]{#ltxid8}{3}\n, \n  \\xhref[sec]{#ltxid6}{2}\n, \n  \\xhref[bibr]{#bibr-Ti86}{16}\n, \n  \\xhref[table]{#kitchensink15}{1}\n, \n  \\xhref[fig]{#ltxid4}{1}\n}{=} b"
-  },
   "inline-TeX%b=1/|1-e^{z_0}|\\approx 1.07": {
     "format": "inline-TeX",
     "tex": "b=1/|1-e^{z_0}|\\approx 1.07"
