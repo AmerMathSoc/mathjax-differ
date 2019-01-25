@@ -172,13 +172,14 @@ const diff = async (texstring, format) => {
   console.log('v2 vs v3 - Mismatch: ' + diff_2_3.misMatchPercentage);
 
   // write output if mismatch
-  if (diff_2_sre.misMatchPercentage > 1 || diff_2_3.misMatchPercentage > 1)
+  const threshold = 1;
+  if (diff_2_sre.misMatchPercentage > threshold || diff_2_3.misMatchPercentage > threshold)
     fs.writeFileSync(texstringhash + '-v2.png', png2);
-  if (diff_2_sre.misMatchPercentage > 1) {
+  if (diff_2_sre.misMatchPercentage > threshold) {
     fs.writeFileSync(texstringhash + '-v2sre.png', pngsre);
     fs.writeFileSync(texstringhash + '-v2-v2sre.png', diff_2_sre.getBuffer());
   }
-  if (diff_2_3.misMatchPercentage > 1) {
+  if (diff_2_3.misMatchPercentage > threshold) {
     fs.writeFileSync(texstringhash + '-v3.png', png3);
     fs.writeFileSync(texstringhash + '-v2-v3.png', diff_2_3.getBuffer());
   }
