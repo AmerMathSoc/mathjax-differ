@@ -10,7 +10,6 @@
 const fs = require('fs');
 const crypto = require('crypto');
 const compareImages = require('resemblejs/compareImages');
-const Jimp = require('jimp');
 
 //
 // MathJax v2 setup
@@ -71,18 +70,15 @@ const svg2png = async svgstring => {
   await page.evaluate(
     s =>
       (document.body.innerHTML =
-        '<span style="display:inline-flex; padding: 5px">' + //padding b/c v3 may be cut off
+        '<span style="display:inline-flex; padding: 5px; height: 500px; width: 500px;">' + //padding b/c v3 may be cut off
         s +
         '</span>'),
-    svgstring
+    svgstring.replace(/width="(.*?)"/s,'width="100%"').replace(/height=".*?"/s,'')
   );
   const svg = await page.$('span');
   const result = await svg.screenshot();
   await browser.close();
-  // autocrop with JIMP
-  const jimped = await Jimp.read(result);
-  jimped.autocrop();
-  return jimped.getBufferAsync('image/png');
+  return result;
 };
 
 //
@@ -154,9 +150,14 @@ const diff = async (texstring, format) => {
   }
   // fs.writeFileSync(texstringhash + '-v3.svg', svg3.svg);
 
+  // transfer viewBox, styles
+  const viewboxregex = /viewBox=".*?"/s;
+  const viewboxv3 = svg3.svg.match(viewboxregex)[0];
+  const styleregex = /style=".*?"/s;
+  const stylev3 = svg3.svg.match(styleregex)[0];
   // svg2png
-  const png2 = await svg2png(svg2.svg);
-  const pngsre = await svg2png(svg2sre.svg);
+  const png2 = await svg2png(svg2.svg.replace(viewboxregex,viewboxv3).replace(styleregex,stylev3));
+  const pngsre = await svg2png(svg2sre.svg.replace(viewboxregex,viewboxv3).replace(styleregex,stylev3));
   const png3 = await svg2png(svg3.svg);
 
   // diff
@@ -172,7 +173,7 @@ const diff = async (texstring, format) => {
   console.log('v2 vs v3 - Mismatch: ' + diff_2_3.misMatchPercentage);
 
   // write output if mismatch
-  const threshold = 1;
+  const threshold = 0.1;
   if (diff_2_sre.misMatchPercentage > threshold || diff_2_3.misMatchPercentage > threshold)
     fs.writeFileSync(texstringhash + '-v2.png', png2);
   if (diff_2_sre.misMatchPercentage > threshold) {
@@ -181,7 +182,7 @@ const diff = async (texstring, format) => {
   }
   if (diff_2_3.misMatchPercentage > threshold) {
     fs.writeFileSync(texstringhash + '-v3.png', png3);
-    fs.writeFileSync(texstringhash + '-v2-v3.png', diff_2_3.getBuffer());
+    fs.writeFileSync(texstringhash + '-v3-v2.png', diff_2_3.getBuffer());
   }
 };
 
